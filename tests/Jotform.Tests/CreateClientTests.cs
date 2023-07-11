@@ -6,7 +6,7 @@ public class CreateClientTests
     public void NewJotformClient_WithApiKey_ShouldNotError()
     {
         // Act
-        var jotformClient = new PostFormReports("1234567890abcdef1234567890abcdef");
+        var jotformClient = new JotformClient("1234567890abcdef1234567890abcdef");
         
         // Assert
         jotformClient.Should().NotBeNull();
@@ -16,7 +16,7 @@ public class CreateClientTests
     public void NewJotformClient_WithEnterpriseSubdomain_ShouldNotError()
     {
         // Act
-        var jotformClient = new PostFormReports("1234567890abcdef1234567890abcdef", "subdomain");
+        var jotformClient = new JotformClient("1234567890abcdef1234567890abcdef", "subdomain");
         
         // Assert
         jotformClient.Should().NotBeNull();

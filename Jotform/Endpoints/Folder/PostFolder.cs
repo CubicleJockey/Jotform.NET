@@ -1,8 +1,9 @@
 ﻿using Jotform.Models.Form;
+using Jotform.Models.User;
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<Folder>?> PostFolderAsync(string folderName, string? parentId = null, string? colorHex = null, CancellationToken cancellationToken = default)
     {

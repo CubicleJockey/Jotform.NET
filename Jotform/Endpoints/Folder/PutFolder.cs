@@ -1,6 +1,6 @@
 ﻿namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<object>?> PutFolderAsync(string folderId, object folder, CancellationToken cancellationToken = default)
     {

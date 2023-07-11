@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     /// <summary>
     /// Sample response seems broken from the docs page, return void for now

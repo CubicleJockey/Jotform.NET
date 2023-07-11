@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     // TODO: Returns pagination info, but does not take them as parameters
     public async Task<JotformResult<GetUserReportsResponse[]>?> GetUserReportsAsync(CancellationToken cancellationToken = default)

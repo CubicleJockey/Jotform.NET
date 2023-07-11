@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<PagedJotformResult<FormSubmission>?> GetFormSubmissionsAsync(string formId, int? offset = null, int? limit = null, string? filter = null, string? orderBy = null, CancellationToken cancellationToken = default)
     {

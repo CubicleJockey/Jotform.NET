@@ -3,7 +3,7 @@ using Jotform.Json;
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     private readonly string apiKey;
     private readonly HttpClient httpClient;
@@ -23,7 +23,7 @@ public partial class PostFormReports
     /// </summary>
     /// <param name="apiKey">Obtain an api key at https://www.jotform.com/myaccount/api</param>
     /// <param name="enterpriseSubDomain">For enterprise users, use 'SUBDOMAIN', from the string: 'SUBDOMAIN.jotform.com/API'</param>
-    public PostFormReports(string apiKey, string? enterpriseSubDomain = null)
+    public JotformClient(string apiKey, string? enterpriseSubDomain = null)
     {
         this.apiKey = apiKey;
         

@@ -4,7 +4,7 @@ using Jotform.Models.Form;
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<FormProperties>?> GetFormPropertyAsync(string formId, Expression<Func<FormProperties, object>> property, CancellationToken cancellationToken = default)
     {

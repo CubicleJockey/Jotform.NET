@@ -1,6 +1,6 @@
 ﻿namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     /// <summary>
     /// Get User Forms

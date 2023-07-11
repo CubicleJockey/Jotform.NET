@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<HistoryLog[]>?> GetUserHistoryAsync(HistoryAction? action = null, HistoryDate? date = null, string? startDate = null, string? endDate = null, CancellationToken cancellationToken = default)
     {

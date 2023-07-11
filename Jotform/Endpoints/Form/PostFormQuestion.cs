@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<Question>?> PostFormQuestionAsync(string formId, string questionId, Dictionary<string, string> questionDefinition, CancellationToken cancellationToken = default)
     {

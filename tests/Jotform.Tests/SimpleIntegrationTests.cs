@@ -1,5 +1,6 @@
 using System.Net;
 using Jotform.Models.Shared;
+using Jotform.Models.System;
 using Jotform.Tests.Fixtures;
 
 namespace Jotform.Tests;
@@ -81,7 +82,7 @@ public class SimpleIntegrationTests
         var jotformClient = JotformClientFixture.JotformClient;
 
         // Act
-        Func<Task> act = async () => await jotformClient.GetSubUsersAsync();
+        var act = async () => await jotformClient.GetSubUsersAsync();
 
         // Assert
         await act.Should().ThrowAsync<HttpRequestException>();
@@ -122,7 +123,7 @@ public class SimpleIntegrationTests
         var jotformClient = JotformClientFixture.JotformClient;
         
         // Act
-        Func<Task> act = async () => await jotformClient.PostUserRegisterAsync("", "", "");
+        var act = async () => await jotformClient.PostUserRegisterAsync("", "", "");
         
         // Assert
         await act.Should().ThrowAsync<NotSupportedException>();
@@ -135,7 +136,7 @@ public class SimpleIntegrationTests
         var jotformClient = JotformClientFixture.JotformClient;
         
         // Act
-        Func<Task> act = async () => await jotformClient.PostUserLoginAsync("", "");
+        var act = async () => await jotformClient.PostUserLoginAsync("", "");
         
         // Assert
         await act.Should().ThrowAsync<NotSupportedException>();
@@ -148,7 +149,7 @@ public class SimpleIntegrationTests
         var jotformClient = JotformClientFixture.JotformClient;
         
         // Act
-        Func<Task> act = async () => await jotformClient.GetUserLogoutAsync();
+        var act = async () => await jotformClient.GetUserLogoutAsync();
         
         // Assert
         await act.Should().ThrowAsync<NotSupportedException>();

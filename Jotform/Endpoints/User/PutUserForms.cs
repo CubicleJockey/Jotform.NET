@@ -1,6 +1,6 @@
 ﻿namespace Jotform;
 
-public partial class PostFormReports
+public partial class JotformClient
 {
     public async Task<JotformResult<Models.Form.Form>?> PutUserFormsAsync(object formDefinition, CancellationToken cancellationToken = default)
     {

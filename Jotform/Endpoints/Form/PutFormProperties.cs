@@ -2,7 +2,7 @@
 
 namespace Jotform;
 
-public partial class PostFormReports 
+public partial class JotformClient 
 {
     public async Task<JotformResult<FormProperties>?> PutFormPropertiesAsync(string formId, object formProperties, CancellationToken cancellationToken = default)
     {
