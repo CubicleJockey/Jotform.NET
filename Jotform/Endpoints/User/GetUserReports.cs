@@ -1,4 +1,6 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.User;
+
+namespace Jotform;
 
 public partial class PostFormReports
 {
