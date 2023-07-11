@@ -3,12 +3,12 @@ using Jotform.Json;
 
 namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
-    private readonly string _apiKey;
-    private readonly HttpClient _httpClient;
+    private readonly string apiKey;
+    private readonly HttpClient httpClient;
     
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
+    private readonly JsonSerializerOptions jsonSerializerOptions = new()
     {
         Converters =
         {
@@ -22,21 +22,21 @@ public partial class JotformClient
     /// Create a new Jotform Client
     /// </summary>
     /// <param name="apiKey">Obtain an api key at https://www.jotform.com/myaccount/api</param>
-    /// <param name="enterpriseSubdomain">For enterprise users, use 'SUBDOMAIN', from the string: 'SUBDOMAIN.jotform.com/API'</param>
-    public JotformClient(string apiKey, string? enterpriseSubdomain = null)
+    /// <param name="enterpriseSubDomain">For enterprise users, use 'SUBDOMAIN', from the string: 'SUBDOMAIN.jotform.com/API'</param>
+    public PostFormReports(string apiKey, string? enterpriseSubDomain = null)
     {
-        _apiKey = apiKey;
+        this.apiKey = apiKey;
         
-        var baseUrl = enterpriseSubdomain != null
-            ? $"https://{enterpriseSubdomain}.jotform.com/api"
+        var baseUrl = enterpriseSubDomain != null
+            ? $"https://{enterpriseSubDomain}.jotform.com/api"
             : "https://api.jotform.com";
         
-        _httpClient = new HttpClient
+        httpClient = new()
         {
-            BaseAddress = new Uri(baseUrl),
+            BaseAddress = new(baseUrl),
             DefaultRequestHeaders =
             {
-                { "APIKEY", _apiKey}
+                { "APIKEY", this.apiKey}
             }
         };
     }

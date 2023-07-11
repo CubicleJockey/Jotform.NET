@@ -1,17 +1,14 @@
-﻿using System.Text;
-using System.Text.Json;
+﻿namespace Jotform;
 
-namespace Jotform;
-
-public partial class JotformClient
+public partial class PostFormReports
 {
-    public async Task<JotformResult<Models.Shared.Form>?> PutUserFormsAsync(object formDefinition, CancellationToken cancellationToken = default)
+    public async Task<JotformResult<Models.Form.Form>?> PutUserFormsAsync(object formDefinition, CancellationToken cancellationToken = default)
     {
-        var response = await _httpClient.PutAsJsonAsync("user/forms", formDefinition, _jsonSerializerOptions, 
+        var response = await httpClient.PutAsJsonAsync("user/forms", formDefinition, jsonSerializerOptions, 
             cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<Models.Shared.Form>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<Models.Form.Form>>(jsonSerializerOptions, cancellationToken);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using Jotform.Models.Form;
 
 namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<FormProperties>?> GetFormPropertyAsync(string formId, Expression<Func<FormProperties, object>> property, CancellationToken cancellationToken = default)
     {
@@ -30,6 +31,6 @@ public partial class JotformClient
 
         var propertyString = jsonProperty.ConstructorArguments.FirstOrDefault().Value?.ToString();
         
-        return await _httpClient.GetFromJsonAsync<JotformResult<FormProperties>>($"form/{formId}/properties/{propertyString}", cancellationToken);
+        return await httpClient.GetFromJsonAsync<JotformResult<FormProperties>>($"form/{formId}/properties/{propertyString}", cancellationToken);
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
+using Jotform.Models.Form;
 
 namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<Dictionary<string, string>>?> PostFormWebhookAsync(string formId, Uri webhookUrl, CancellationToken cancellationToken = default)
     {
@@ -15,13 +16,13 @@ public partial class JotformClient
         
         formData.Add("webhookURL", webhookUrl.ToString());
 
-        var response = await _httpClient.PostAsync($"form/{formId}/webhooks", formData.Build(), cancellationToken);
+        var response = await httpClient.PostAsync($"form/{formId}/webhooks", formData.Build(), cancellationToken);
         
         response.EnsureSuccessStatusCode();
 
         try
         {
-            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(_jsonSerializerOptions, cancellationToken);
+            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(jsonSerializerOptions, cancellationToken);
         }
         catch (JsonException)
         {

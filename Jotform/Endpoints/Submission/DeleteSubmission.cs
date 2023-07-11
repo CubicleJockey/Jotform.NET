@@ -1,8 +1,8 @@
 ﻿namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<string>?> DeleteSubmissionAsync(string submissionId, CancellationToken cancellationToken = default) 
-        => await _httpClient.DeleteFromJsonAsync<JotformResult<string>>($"submission/{submissionId}", 
-            _jsonSerializerOptions, cancellationToken);
+        => await httpClient.DeleteFromJsonAsync<JotformResult<string>>($"submission/{submissionId}", 
+            jsonSerializerOptions, cancellationToken);
 }

@@ -1,8 +1,8 @@
 ﻿namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
-    public async Task<JotformResult<Models.Shared.Form>?> GetFormAsync(string formId, CancellationToken cancellationToken = default) 
-        => await _httpClient.GetFromJsonAsync<JotformResult<Models.Shared.Form>>($"form/{formId}", 
-            _jsonSerializerOptions, cancellationToken: cancellationToken);
+    public async Task<JotformResult<Models.Form.Form>?> GetFormAsync(string formId, CancellationToken cancellationToken = default) 
+        => await httpClient.GetFromJsonAsync<JotformResult<Models.Form.Form>>($"form/{formId}", 
+            jsonSerializerOptions, cancellationToken: cancellationToken);
 }

@@ -1,6 +1,8 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     /// <summary>
     /// Sample response seems broken from the docs page, return void for now
@@ -16,7 +18,7 @@ public partial class JotformClient
             formData.Add(key, value);
         }
         
-        var response = await _httpClient.PostAsync("form", 
+        var response = await httpClient.PostAsync("form", 
             formData.Build(), cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();

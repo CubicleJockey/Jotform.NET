@@ -1,13 +1,13 @@
 ﻿namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<string>?> DeleteFolderAsync(string folderId, CancellationToken cancellationToken = default)
     {
-        var response = await _httpClient.DeleteAsync($"folder/{folderId}", cancellationToken);
+        var response = await httpClient.DeleteAsync($"folder/{folderId}", cancellationToken);
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<JotformResult<string>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<string>>(jsonSerializerOptions, cancellationToken);
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     public async Task<JotformResult<UserSettings>?> PostUserSettingsAsync(string? name = null, string? email = null, string? website = null, string? timezone = null, string? company = null, string? securityQuestion = null, string? securityAnswer = null, string? industry = null, 
         CancellationToken cancellationToken = default)
@@ -16,11 +18,11 @@ public partial class JotformClient
             .Add("industry", industry)
             .Build();
 
-        var response = await _httpClient.PostAsync("user/settings", 
+        var response = await httpClient.PostAsync("user/settings", 
             formData, cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<UserSettings>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<UserSettings>>(jsonSerializerOptions, cancellationToken);
     }
 }

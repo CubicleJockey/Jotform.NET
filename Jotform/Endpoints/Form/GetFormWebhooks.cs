@@ -2,18 +2,18 @@
 
 namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<Dictionary<string, string>>?> GetFormWebhooksAsync(string formId, CancellationToken cancellationToken = default)
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<JotformResult<Dictionary<string, string>>>($"form/{formId}/webhooks",
-                _jsonSerializerOptions, cancellationToken);
+            return await httpClient.GetFromJsonAsync<JotformResult<Dictionary<string, string>>>($"form/{formId}/webhooks",
+                jsonSerializerOptions, cancellationToken);
         }
         catch (JsonException)
         {
-            return new JotformResult<Dictionary<string, string>>();
+            return new();
         }
     }
 }

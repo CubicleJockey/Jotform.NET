@@ -1,6 +1,8 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     public async Task<JotformResult<FormReport>?> PostFormReportsAsync(string formId, string reportTitle, ListType listType, string[]? fields, CancellationToken cancellationToken = default)
     {
@@ -14,19 +16,10 @@ public partial class JotformClient
             formData.Add("fields", string.Join(",", fields));
         }
         
-        var response = await _httpClient.PostAsync($"form/{formId}/reports", formData.Build(), cancellationToken);
+        var response = await httpClient.PostAsync($"form/{formId}/reports", formData.Build(), cancellationToken);
         
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<JotformResult<FormReport>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<FormReport>>(jsonSerializerOptions, cancellationToken);
     }
-}
-
-public enum ListType
-{
-    CSV,
-    Excel,
-    Grid,
-    Table,
-    RSS
 }

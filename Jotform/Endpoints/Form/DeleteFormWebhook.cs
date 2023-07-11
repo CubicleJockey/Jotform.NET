@@ -2,17 +2,17 @@
 
 namespace Jotform;
 
-public partial class JotformClient
+public partial class PostFormReports
 {
     public async Task<JotformResult<Dictionary<string, string>>?> DeleteFormWebhookAsync(string formId, string webhookId, CancellationToken cancellationToken = default)
     {
-        var response = await _httpClient.DeleteAsync($"form/{formId}/webhooks/{webhookId}", cancellationToken);
+        var response = await httpClient.DeleteAsync($"form/{formId}/webhooks/{webhookId}", cancellationToken);
         
         response.EnsureSuccessStatusCode();
 
         try
         {
-            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(_jsonSerializerOptions, cancellationToken);
+            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(jsonSerializerOptions, cancellationToken);
         }
         catch (JsonException)
         {

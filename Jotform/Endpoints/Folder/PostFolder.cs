@@ -1,6 +1,8 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     public async Task<JotformResult<Folder>?> PostFolderAsync(string folderName, string? parentId = null, string? colorHex = null, CancellationToken cancellationToken = default)
     {
@@ -10,10 +12,10 @@ public partial class JotformClient
         formData.Add("parent", parentId);
         formData.Add("color", colorHex);
         
-        var response = await _httpClient.PostAsync("folder", formData.Build(), cancellationToken);
+        var response = await httpClient.PostAsync("folder", formData.Build(), cancellationToken);
         
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<Folder>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<Folder>>(jsonSerializerOptions, cancellationToken);
     }
 }

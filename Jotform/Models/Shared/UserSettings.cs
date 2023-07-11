@@ -47,7 +47,7 @@ public class UserSettings
     [JsonPropertyName("is_verified")]
     public bool? IsVerified { get; set; }
 
-    [Obsolete($"Use {nameof(JotformClient.GetUserUsageAsync)}() method instead")]
+    [Obsolete($"Use {nameof(PostFormReports.GetUserUsageAsync)}() method instead")]
     [JsonPropertyName("usage")]
     public string UsageEndpoint { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace Jotform.Models.Shared;
+﻿namespace Jotform.Models.Form;
 
 public class FormDataBuilder
 {

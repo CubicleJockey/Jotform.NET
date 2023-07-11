@@ -1,8 +1,10 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     public async Task<JotformResult<FormSubmission>?> GetSubmissionAsync(string submissionId, CancellationToken cancellationToken = default) 
-        => await _httpClient.GetFromJsonAsync<JotformResult<FormSubmission>>($"submission/{submissionId}", 
-            _jsonSerializerOptions, cancellationToken);
+        => await httpClient.GetFromJsonAsync<JotformResult<FormSubmission>>($"submission/{submissionId}", 
+            jsonSerializerOptions, cancellationToken);
 }

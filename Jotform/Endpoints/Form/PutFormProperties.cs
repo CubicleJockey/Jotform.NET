@@ -1,14 +1,16 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient 
+namespace Jotform;
+
+public partial class PostFormReports 
 {
     public async Task<JotformResult<FormProperties>?> PutFormPropertiesAsync(string formId, object formProperties, CancellationToken cancellationToken = default)
     {
-        var response = await _httpClient.PutAsJsonAsync($"form/{formId}/properties", formProperties, _jsonSerializerOptions, 
+        var response = await httpClient.PutAsJsonAsync($"form/{formId}/properties", formProperties, jsonSerializerOptions, 
             cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<FormProperties>>(_jsonSerializerOptions, cancellationToken: cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<FormProperties>>(jsonSerializerOptions, cancellationToken: cancellationToken);
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
-    public async Task<JotformResult<Models.Shared.Form>?> PostUserFormsAsync(Dictionary<string, string> formDefinition, CancellationToken cancellationToken = default)
+    public async Task<JotformResult<Models.Form.Form>?> PostUserFormsAsync(Dictionary<string, string> formDefinition, CancellationToken cancellationToken = default)
     {
         var formData = new FormDataBuilder();
 
@@ -11,11 +13,11 @@ public partial class JotformClient
             formData.Add(key, value);
         }
         
-        var response = await _httpClient.PostAsync("user/forms", 
+        var response = await httpClient.PostAsync("user/forms", 
             formData.Build(), cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<Models.Shared.Form>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<Models.Form.Form>>(jsonSerializerOptions, cancellationToken);
     }
 }

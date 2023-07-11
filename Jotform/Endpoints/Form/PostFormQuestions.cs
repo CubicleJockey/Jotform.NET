@@ -1,6 +1,8 @@
-﻿namespace Jotform;
+﻿using Jotform.Models.Form;
 
-public partial class JotformClient
+namespace Jotform;
+
+public partial class PostFormReports
 {
     public async Task<JotformResult<Question>?> PostFormQuestionsAsync(string formId, Dictionary<string, string> questionDefinition, CancellationToken cancellationToken = default)
     {
@@ -11,11 +13,11 @@ public partial class JotformClient
             formData.Add(key, value);
         }
 
-        var response = await _httpClient.PostAsJsonAsync($"form/{formId}/questions", formData, _jsonSerializerOptions, 
+        var response = await httpClient.PostAsJsonAsync($"form/{formId}/questions", formData, jsonSerializerOptions, 
             cancellationToken: cancellationToken);
 
         response.EnsureSuccessStatusCode();
 
-        return await response.Content.ReadFromJsonAsync<JotformResult<Question>>(_jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<Question>>(jsonSerializerOptions, cancellationToken);
     }
 }

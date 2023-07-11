@@ -1,4 +1,4 @@
-﻿namespace Jotform.Models.Shared;
+﻿namespace Jotform.Models.Form;
 
 public class Form
 {
@@ -44,11 +44,11 @@ public class Form
 
     [JsonPropertyName("url")]
     public string Url { get; set; }
-    
-}
 
-public enum FormType
-{
-    Legacy,
-    Card
+    [JsonPropertyName("source")]
+    public string Source { get; set; }
+
+    [JsonPropertyName("slug")]
+    public string Slug { get; set; }
+
 }
