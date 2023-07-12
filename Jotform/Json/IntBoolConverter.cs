@@ -15,14 +15,14 @@ public class IntBoolConverter : JsonConverter<bool>
             case JsonTokenType.False:
                 return false;
             case JsonTokenType.String:
-                var stringRead = reader.GetString();
+                var stringBoolean = reader.GetString();
                 // "1" or "0", then "Yes" or "No"
-                return int.TryParse(stringRead, out var i) ? Convert.ToBoolean(i) 
-                    : TryFromYesNoString(stringRead, out var yn) 
+                return int.TryParse(stringBoolean, out var i) ? Convert.ToBoolean(i) 
+                    : TryFromYesNoString(stringBoolean, out var yn) 
                         ? yn : throw new JsonException();
                 
             case JsonTokenType.Number:
-                return reader.TryGetInt64(out long l) ? Convert.ToBoolean(l) : reader.TryGetDouble(out var d) && Convert.ToBoolean(d);
+                return reader.TryGetInt64(out var l) ? Convert.ToBoolean(l) : reader.TryGetDouble(out var d) && Convert.ToBoolean(d);
             case JsonTokenType.None:
             case JsonTokenType.StartObject:
             case JsonTokenType.EndObject:
