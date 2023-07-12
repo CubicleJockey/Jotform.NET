@@ -22,4 +22,30 @@ public static class AnswerDictionaryExtensions
         }
         catch { return default!; }
     }
+
+    public static bool GetIsCheckedByName(this IDictionary<int, Answer> answers, string answerName, string checkboxLabel)
+    {
+        var (_, answerFound) = answers.FirstOrDefault(answer => answer.Value.Name == answerName);
+        if(answerFound is not { Type: "control_checkbox" }) { return false; }
+
+        var text = answerFound.Text;
+        var answer = answerFound.UserResponse;
+
+        var isTextAvailable = !string.IsNullOrWhiteSpace(text);
+
+        if (!isTextAvailable && answer == default!) { return false; }
+
+        if (isTextAvailable && answer == default!)
+        {
+            return answerFound.Text.Contains(checkboxLabel);
+        }
+
+        if (answerFound.UserResponse.GetType().IsArray)
+        {
+            var checkboxItems = (string[])answerFound.UserResponse;
+            return checkboxItems.Any(item => item.Contains(checkboxLabel));
+        }
+
+        return false;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using Jotform.Models.User;
+using Jotform.Utils;
 
 namespace Jotform;
 
@@ -10,7 +11,7 @@ public partial class JotformClient
     /// </summary>
     public async Task<PagedJotformResult<GetUserSubmissionsResponse>?> GetUserSubmissionsAsync(int? offset = null, int? limit = null, string? filter = null, string? orderBy = null, CancellationToken cancellationToken = default)
     {
-        var url = new UriBuilder("user/submissions")
+        var url = new UriTool("user/submissions")
             .AddQuery("offset", offset)
             .AddQuery("limit", limit)
             .AddQuery("filter", filter)

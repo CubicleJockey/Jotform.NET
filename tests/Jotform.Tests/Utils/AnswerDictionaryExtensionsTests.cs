@@ -16,12 +16,24 @@ public class AnswerDictionaryExtensionsTests
             {1, new() { Name = "StringItem", UserResponse = "UserAnswer"} },
             {2, new() { Name = "CustomObject", UserResponse = new ThingyDate{ Month = "05", Day = "10", Year = "2023", DateTime = "2023-05-10 00:00:00"}} },
             {3, new() { Name = "Number", UserResponse = 1_000_000 } },
-            {4, new() { Name = "CustomObjectAsJson", UserResponse = " {\"month\":\"05\",\"day\":\"16\",\"year\":\"2023\"}" } }
+            {4, new() { Name = "CustomObjectAsJson", UserResponse = " {\"month\":\"05\",\"day\":\"16\",\"year\":\"2023\"}" } },
+            {5, new() { Name = "ACheckbox_Text", Text = "This is the label of the checkbox.", Type = "control_checkbox" }},
+            {6, new() { Name = "Checkbox_TypeNotSet", Text = "Unimportant"} },
+            {7, new() { Name = "Both_TextAndAnswer_Empty", Text = default!, UserResponse = default!} }
         };
     }
 
-
+    [DataRow("ACheckbox_Text", "of the checkbox", true)]
+    [DataRow("Checkbox_TypeNotSet", default, false)]
+    [DataRow("Both_TextAndAnswer_Empty", "attempt to find", false)]
     [DataTestMethod]
+    public void GetIsCheckedByName_TextProperty(string name, string checkboxLabel, bool expected)
+    {
+        var result = answers.GetIsCheckedByName(name, checkboxLabel);
+        result.Should().Be(expected);
+    }
+
+    [TestMethod]
     public void GetAnswer_NotFound()
     {
         const string Name = "NotFound";
