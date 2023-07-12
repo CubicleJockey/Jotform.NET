@@ -4,8 +4,7 @@ namespace Jotform.Json;
 
 public class IntBoolConverter : JsonConverter<bool>
 {
-    public override void Write(Utf8JsonWriter writer, bool value, JsonSerializerOptions options) =>
-        writer.WriteBooleanValue(value);
+    public override void Write(Utf8JsonWriter writer, bool value, JsonSerializerOptions options) => writer.WriteBooleanValue(value);
     
     public override bool Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -37,6 +36,8 @@ public class IntBoolConverter : JsonConverter<bool>
         }
     }
 
+    #region Helper Method
+
     private static bool TryFromYesNoString(string? value, out bool result)
     {
         if (value is null)
@@ -60,4 +61,6 @@ public class IntBoolConverter : JsonConverter<bool>
         result = default;
         return false;
     }
+
+    #endregion Helper Method
 }
