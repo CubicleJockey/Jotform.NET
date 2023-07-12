@@ -25,7 +25,8 @@ public partial class JotformClient
     /// </summary>
     /// <param name="apiKey">Obtain an api key at https://www.jotform.com/myaccount/api</param>
     /// <param name="enterpriseSubDomain">For enterprise users, use 'SUBDOMAIN', from the string: 'SUBDOMAIN.jotform.com/API'</param>
-    public JotformClient(string apiKey, string? enterpriseSubDomain = null)
+    /// <param name="httpClient">Override HttpClient with custom settings if needed.</param>
+    public JotformClient(string apiKey, string? enterpriseSubDomain = default!, HttpClient httpClient = default!)
     {
         if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentException("Cannot be empty.", nameof(apiKey)); }
 
@@ -34,14 +35,21 @@ public partial class JotformClient
         BaseUrl = enterpriseSubDomain != null
             ? $"https://{enterpriseSubDomain}.jotform.com/api"
             : "https://api.jotform.com";
-        
-        httpClient = new()
+
+        if (httpClient != default)
         {
-            BaseAddress = new(BaseUrl),
-            DefaultRequestHeaders =
+            this.httpClient = httpClient;
+        }
+        else
+        {
+            this.httpClient = new()
             {
-                { "APIKEY", this.apiKey}
-            }
-        };
+                BaseAddress = new(BaseUrl),
+                DefaultRequestHeaders =
+                {
+                    { "apiKey", this.apiKey }
+                }
+            };
+        }
     }
 }
