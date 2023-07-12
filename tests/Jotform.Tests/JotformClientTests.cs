@@ -1,7 +1,7 @@
 ﻿namespace Jotform.Tests;
 
 [TestClass]
-public class CreateClientTests
+public class JotformClientTests
 {
     [DataRow(null)]
     [DataRow("")]
@@ -13,6 +13,23 @@ public class CreateClientTests
         ctor.Should()
             .Throw<ArgumentException>()
             .WithMessage("Cannot be empty. (Parameter 'apiKey')");
+    }
+
+    [TestMethod]
+    public void Ctor_StandardBaseUrl()
+    {
+        var jotformClient = new JotformClient(Guid.NewGuid().ToString());
+        jotformClient.BaseUrl.Should().Be("https://api.jotform.com");
+    }
+
+    [DataRow("lim")]
+    [DataRow("ms")]
+    [DataRow("pacific")]
+    [DataTestMethod]
+    public void Ctor_SubDomain_BaseUrl(string subDomain)
+    {
+        var jotformClient = new JotformClient(Guid.NewGuid().ToString(), subDomain);
+        jotformClient.BaseUrl.Should().Be($"https://{subDomain}.jotform.com/api");
     }
 
     [TestMethod]

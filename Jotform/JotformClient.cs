@@ -18,6 +18,8 @@ public partial class JotformClient
         NumberHandling = JsonNumberHandling.AllowReadingFromString
     };
     
+    public string BaseUrl { get; init; }
+
     /// <summary>
     /// Create a new Jotform Client
     /// </summary>
@@ -29,13 +31,13 @@ public partial class JotformClient
 
         this.apiKey = apiKey;
         
-        var baseUrl = enterpriseSubDomain != null
+        BaseUrl = enterpriseSubDomain != null
             ? $"https://{enterpriseSubDomain}.jotform.com/api"
             : "https://api.jotform.com";
         
         httpClient = new()
         {
-            BaseAddress = new(baseUrl),
+            BaseAddress = new(BaseUrl),
             DefaultRequestHeaders =
             {
                 { "APIKEY", this.apiKey}
