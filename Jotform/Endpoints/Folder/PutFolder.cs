@@ -8,6 +8,6 @@ public partial class JotformClient
         
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<object>>(jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<object>>(JsonSerializerOptions, cancellationToken);
     }
 }

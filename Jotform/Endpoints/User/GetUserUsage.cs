@@ -10,5 +10,5 @@ public partial class JotformClient
     /// </summary>
     public async Task<JotformResult<GetUserUsageResponse>?> GetUserUsageAsync(CancellationToken cancellationToken = default)
         => await httpClient.GetFromJsonAsync<JotformResult<GetUserUsageResponse>>("user/usage", 
-            jsonSerializerOptions, cancellationToken: cancellationToken);
+            JsonSerializerOptions, cancellationToken: cancellationToken);
 }

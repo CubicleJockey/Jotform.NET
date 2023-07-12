@@ -6,6 +6,6 @@ public partial class JotformClient
 {
     public async Task<JotformResult<FormFile[]>?> GetFormFilesAsync(string formId, CancellationToken cancellationToken = default)
     {
-        return await httpClient.GetFromJsonAsync<JotformResult<FormFile[]>>($"form/{formId}/files", jsonSerializerOptions, cancellationToken);
+        return await httpClient.GetFromJsonAsync<JotformResult<FormFile[]>>($"form/{formId}/files", JsonSerializerOptions, cancellationToken);
     }
 }

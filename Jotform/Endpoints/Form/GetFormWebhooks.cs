@@ -9,7 +9,7 @@ public partial class JotformClient
         try
         {
             return await httpClient.GetFromJsonAsync<JotformResult<Dictionary<string, string>>>($"form/{formId}/webhooks",
-                jsonSerializerOptions, cancellationToken);
+                JsonSerializerOptions, cancellationToken);
         }
         catch (JsonException)
         {

@@ -8,7 +8,7 @@ public partial class JotformClient
     private readonly string apiKey;
     private readonly HttpClient httpClient;
     
-    private readonly JsonSerializerOptions jsonSerializerOptions = new()
+    public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         Converters =
         {
@@ -25,6 +25,8 @@ public partial class JotformClient
     /// <param name="enterpriseSubDomain">For enterprise users, use 'SUBDOMAIN', from the string: 'SUBDOMAIN.jotform.com/API'</param>
     public JotformClient(string apiKey, string? enterpriseSubDomain = null)
     {
+        if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentException("Cannot be empty.", nameof(apiKey)); }
+
         this.apiKey = apiKey;
         
         var baseUrl = enterpriseSubDomain != null

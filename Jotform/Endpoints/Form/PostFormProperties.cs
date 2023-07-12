@@ -17,6 +17,6 @@ public partial class JotformClient
 
         response.EnsureSuccessStatusCode();
 
-        return response.Content.ReadFromJsonAsync<JotformResult<FormProperties>>(jsonSerializerOptions, cancellationToken);
+        return response.Content.ReadFromJsonAsync<JotformResult<FormProperties>>(JsonSerializerOptions, cancellationToken);
     }
 }

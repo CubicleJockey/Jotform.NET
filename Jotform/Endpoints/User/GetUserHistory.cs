@@ -13,6 +13,6 @@ public partial class JotformClient
             .AddQuery("endDate", endDate)
             .ToString();
 
-        return await httpClient.GetFromJsonAsync<JotformResult<HistoryLog[]>>(url, jsonSerializerOptions, cancellationToken);
+        return await httpClient.GetFromJsonAsync<JotformResult<HistoryLog[]>>(url, JsonSerializerOptions, cancellationToken);
     }
 }

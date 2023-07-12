@@ -22,7 +22,7 @@ public partial class JotformClient
 
         try
         {
-            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(jsonSerializerOptions, cancellationToken);
+            return await response.Content.ReadFromJsonAsync<JotformResult<Dictionary<string, string>>>(JsonSerializerOptions, cancellationToken);
         }
         catch (JsonException)
         {

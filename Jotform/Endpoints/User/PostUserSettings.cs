@@ -23,6 +23,6 @@ public partial class JotformClient
 
         response.EnsureSuccessStatusCode();
         
-        return await response.Content.ReadFromJsonAsync<JotformResult<UserSettings>>(jsonSerializerOptions, cancellationToken);
+        return await response.Content.ReadFromJsonAsync<JotformResult<UserSettings>>(JsonSerializerOptions, cancellationToken);
     }
 }

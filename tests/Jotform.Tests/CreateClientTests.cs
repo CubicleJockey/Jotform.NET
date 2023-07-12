@@ -1,24 +1,39 @@
 ﻿namespace Jotform.Tests;
 
+[TestClass]
 public class CreateClientTests
 {
-    [Fact]
-    public void NewJotformClient_WithApiKey_ShouldNotError()
+    [DataRow(null)]
+    [DataRow("")]
+    [DataRow("                      ")]
+    [DataTestMethod]
+    public void Ctor_NoApiKey_IsInvalid(string apiKey)
     {
-        // Act
-        var jotformClient = new JotformClient("1234567890abcdef1234567890abcdef");
-        
-        // Assert
-        jotformClient.Should().NotBeNull();
+        var ctor = () => _ = new JotformClient(apiKey);
+        ctor.Should()
+            .Throw<ArgumentException>()
+            .WithMessage("Cannot be empty. (Parameter 'apiKey')");
     }
 
-    [Fact]
-    public void NewJotformClient_WithEnterpriseSubdomain_ShouldNotError()
+    [TestMethod]
+    public void Ctor_ApiKey_IsValid()
     {
         // Act
-        var jotformClient = new JotformClient("1234567890abcdef1234567890abcdef", "subdomain");
+        var ctor  = () => _ =  new JotformClient(Guid.NewGuid().ToString());
         
         // Assert
-        jotformClient.Should().NotBeNull();
+        ctor.Should()
+            .NotThrow();
+    }
+
+    [TestMethod]
+    public void Ctor_ApiKeyAndSubDomain_IsValid()
+    {
+        // Act
+        var ctor = () => _  = new JotformClient(Guid.NewGuid().ToString(), "subdomain");
+        
+        // Assert
+        ctor.Should()
+            .NotThrow();
     }
 }

@@ -7,10 +7,10 @@
     </PropertyGroup>
     
     <PropertyGroup>
-        <PackageId>Jotform.NET</PackageId>
+        <PackageId>CubicleJockey-Jotform.NET</PackageId>
         <Version>1.0.0</Version>
-        <Authors>Luke Parker</Authors>
-        <Company>LukeParkerDev</Company>
+        <Authors>Luke Parker (Original Forked Author), André Davis</Authors>
+        <Company>CubicleJockey</Company>
     </PropertyGroup>
 
 </Project>

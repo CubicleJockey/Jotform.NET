@@ -24,6 +24,14 @@ public class IntBoolConverter : JsonConverter<bool>
                 
             case JsonTokenType.Number:
                 return reader.TryGetInt64(out long l) ? Convert.ToBoolean(l) : reader.TryGetDouble(out var d) && Convert.ToBoolean(d);
+            case JsonTokenType.None:
+            case JsonTokenType.StartObject:
+            case JsonTokenType.EndObject:
+            case JsonTokenType.StartArray:
+            case JsonTokenType.EndArray:
+            case JsonTokenType.PropertyName:
+            case JsonTokenType.Comment:
+            case JsonTokenType.Null:
             default:
                 throw new JsonException();
         }

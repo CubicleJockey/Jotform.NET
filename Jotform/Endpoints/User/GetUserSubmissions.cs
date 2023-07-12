@@ -16,6 +16,6 @@ public partial class JotformClient
             .AddQuery("filter", filter)
             .AddQuery("orderby", orderBy);
 
-        return await httpClient.GetFromJsonAsync<PagedJotformResult<GetUserSubmissionsResponse>>(url.ToString(), jsonSerializerOptions, cancellationToken);
+        return await httpClient.GetFromJsonAsync<PagedJotformResult<GetUserSubmissionsResponse>>(url.ToString(), JsonSerializerOptions, cancellationToken);
     }
 }
